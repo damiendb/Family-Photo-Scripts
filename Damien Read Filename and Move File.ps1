@@ -70,3 +70,21 @@ Foreach-Object {
     Move-Item -Path $_.FullName -Destination $NewDirName
 
 }
+
+# Finding files with the format Screenshot_YYYYMMDD
+Get-ChildItem "C:\Camera Roll\Screenshots\Screenshot_201*.png" | 
+Foreach-Object {
+
+    # Create variable in the format yyyy-mm-dd
+    $NewDirName = $_.BaseName.Substring(11,4) + "-" + $_.BaseName.Substring(15,2) + "-" + $_.BaseName.Substring(17,2)   
+
+    # Create new directory for the day the photo was taken
+    mkdir $NewDirName
+
+    # Move the file to the new directory
+    Move-Item -Path $_.FullName -Destination $NewDirName
+
+}
+
+
+
