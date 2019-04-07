@@ -8,11 +8,11 @@
 #
 
 # Change to the  Directory with the Photos
-Set-Location "C:\Camera Roll\Photo Album"
+Set-Location "D:\Users\damiendb\Downloads\Photos to Sort\Damien Phone"
 
 # Loop through the Directory files
 # Finding files with the format WP_YYYYMMDD
-Get-ChildItem "C:\Camera Roll\Sort\WP_201*.jpg" | 
+Get-ChildItem "D:\Users\damiendb\Downloads\Photos to Sort\Damien Phone\WP_201*.jpg" | 
 Foreach-Object {
 
     # Create variable in the format yyyy-mm-dd
@@ -27,7 +27,7 @@ Foreach-Object {
 }
 
 # Finding files with the format IMG_YYYYMMDD
-Get-ChildItem "C:\Camera Roll\Sort\IMG_201*.jpg" | 
+Get-ChildItem "D:\Users\damiendb\Downloads\Photos to Sort\Damien Phone\IMG_201*.jpg" | 
 Foreach-Object {
 
     # Create variable in the format yyyy-mm-dd
@@ -42,7 +42,7 @@ Foreach-Object {
 }
 
 # Finding files with the format MVIMG_YYYYMMDD
-Get-ChildItem "C:\Camera Roll\Sort\MVIMG_201*.jpg" | 
+Get-ChildItem "D:\Users\damiendb\Downloads\Photos to Sort\Damien Phone\MVIMG_201*.jpg" | 
 Foreach-Object {
 
     # Create variable in the format yyyy-mm-dd
@@ -57,7 +57,7 @@ Foreach-Object {
 }
 
 # Finding files with the format YYYYMMDD
-Get-ChildItem "C:\Camera Roll\Sort\201*.jpg" | 
+Get-ChildItem "D:\Users\damiendb\Downloads\Photos to Sort\Damien Phone\201*.jpg" | 
 Foreach-Object {
 
     # Create variable in the format yyyy-mm-dd
@@ -72,7 +72,7 @@ Foreach-Object {
 }
 
 # Finding files with the format Screenshot_YYYYMMDD
-Get-ChildItem "C:\Camera Roll\Screenshots\Screenshot_201*.png" | 
+Get-ChildItem "D:\Users\damiendb\Downloads\Photos to Sort\Damien Phone\Screenshot_201*.png" | 
 Foreach-Object {
 
     # Create variable in the format yyyy-mm-dd

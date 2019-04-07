@@ -92,6 +92,13 @@ function Get-Images {
             [String[]]$Extension = @('.jpg','.gif')
         )
     
+        $CultureDateTimeFormat = (Get-Culture).DateTimeFormat
+        $DateFormat = $CultureDateTimeFormat.ShortDatePattern
+        $TimeFormat = $CultureDateTimeFormat.LongTimePattern
+        $DateTimeFormat = "$DateFormat $TimeFormat"
+
+        Write-Host $DateFormat
+
         # Get folder list
         $Folders = @()
         $Duration = Measure-Command { 
@@ -107,13 +114,17 @@ function Get-Images {
             foreach ($File in $objFldr.items()) { 
     
                 Write-Host "Processing file '$($File.Path)'"
-    
-                $DateofPhoto = [DateTime] $objFldr.getDetailsOf($File,3)
-                Write-Host $DateofPhoto.ToShortDateString()
-    
-                $NewDirName = $DateofPhoto.ToString("yyyy-MM-dd")
-                Write-Host $NewDirName
-    
+                $strDate = $objFldr.getDetailsOf($File,3)
+                $strDay = $strDate.SubString(0,2)
+                $strMonth = $strDate.SubString(3,2)
+                $strYear = $strDate.SubString(6,4)
+                # Write-Host Date: $strDate
+                # Write-Host Day: $strDay
+                # Write-Host Month: $strMonth
+                # Write-Host Year: $strYear
+                $NewDirName = $strYear + "-" + $strMonth + "-" + $strDay
+                Write-Host New Directory is: $NewDirName
+
                 # Create new directory for the day the photo was taken
                 mkdir $NewDirName
     
@@ -130,31 +141,31 @@ function Get-Images {
     
 # Change to the  Directory with the Photos
 #Set-Location "C:\Camera Roll\Test Move"
-Set-Location "C:\Camera Roll\Photo Album"
+Set-Location "D:\Users\damiendb\Downloads\Photos to Sort\Damien Phone\Test"
 
-$SourceFolders = @('C:\Camera Roll\Snapchat')
+$SourceFolders = @('D:\Users\damiendb\Downloads\Photos to Sort\Damien Phone\Test')
 Get-Images $SourceFolders
-$SourceFolders = @('C:\Camera Roll\Sort')
-Get-Images $SourceFolders
-$SourceFolders = @('C:\Camera Roll\Videos')
-Get-Images $SourceFolders
+# $SourceFolders = @('C:\Camera Roll\Sort')
+# Get-Images $SourceFolders
+# $SourceFolders = @('C:\Camera Roll\Videos')
+# Get-Images $SourceFolders
 
 
-Set-Location "C:\Camera Roll\Photo Album (Compare Files)"
-$SourceFolders = @('C:\Camera Roll\Burst')
-Get-Images $SourceFolders
-$SourceFolders = @('C:\Camera Roll\Facebook')
-Get-Images $SourceFolders
-$SourceFolders = @('C:\Camera Roll\Facebook Messenger GIFs')
-Get-Images $SourceFolders
-$SourceFolders = @('C:\Camera Roll\Instagram')
-Get-Images $SourceFolders
-$SourceFolders = @('C:\Camera Roll\Lightroom')
-Get-Images $SourceFolders
-$SourceFolders = @('C:\Camera Roll\PhotoShop Mobile')
-Get-Images $SourceFolders
-$SourceFolders = @('C:\Camera Roll\Receipts')
-Get-Images $SourceFolders
+# Set-Location "C:\Camera Roll\Photo Album (Compare Files)"
+# $SourceFolders = @('C:\Camera Roll\Burst')
+# Get-Images $SourceFolders
+# $SourceFolders = @('C:\Camera Roll\Facebook')
+# Get-Images $SourceFolders
+# $SourceFolders = @('C:\Camera Roll\Facebook Messenger GIFs')
+# Get-Images $SourceFolders
+# $SourceFolders = @('C:\Camera Roll\Instagram')
+# Get-Images $SourceFolders
+# $SourceFolders = @('C:\Camera Roll\Lightroom')
+# Get-Images $SourceFolders
+# $SourceFolders = @('C:\Camera Roll\PhotoShop Mobile')
+# Get-Images $SourceFolders
+# $SourceFolders = @('C:\Camera Roll\Receipts')
+# Get-Images $SourceFolders
 
 
 
